@@ -7,7 +7,6 @@ ADD http://nodejs.org/dist/v0.12.2/node-v0.12.2-linux-x64.tar.gz /tmp/node-v0.12
 WORKDIR /tmp
 RUN tar -xvf node-v0.12.2-linux-x64.tar.gz
 RUN mv node-v0.12.2-linux-x64/ /opt/node/
-RUN mv node-v0.12.2-linux-x64/ /opt/node/
 
 WORKDIR /opt/node/bin
 RUN ls -lrt
