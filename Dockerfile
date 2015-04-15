@@ -1,19 +1,16 @@
-FROM ubuntu:14.04
+FROM ubuntu:14.04.2
 
 RUN apt-get update && \
-	apt-get -y upgrade && \
-	apt-get install -y curl
+	apt-get -y upgrade
 
-RUN curl -sL https://deb.nodesource.com/setup | bash
-RUN apt-get install -y nodejs build-essential
-RUN chown 501 /root
-RUN curl -sL https://www.npmjs.com/install.sh | sh
-RUN npm install -g --allow-root yo generator-hubot
+ADD http://nodejs.org/dist/v0.12.2/node-v0.12.2-linux-x64.tar.gz /tmp/node-v0.12.2-linux-x64.tar.gz
+WORKDIR /tmp
+RUN tar -xvf node-v0.12.2-linux-x64.tar.gz
+RUN mv node-v0.12.2-linux-x64/bin/node /usr/bin/node
+RUN mv node-v0.12.2-linux-x64/bin/npm /usr/bin/npm
 
-RUN mkdir -p /opt/hubot
-WORKDIR /opt/hubot
-RUN yo hubot \
-		--owner="Curb Sysadmin <sysadmin@gocurb.com>" \
-		--name="Curbot" \
-		--description="Curbot Environment Manager" \
-		--adapter="shell"
+WORKDIR /usr/bin
+RUN ls -lrt
+RUN chmod +x node
+RUN chmod +x npm
+RUN npm install --allow-root -g yo generator-hubot
