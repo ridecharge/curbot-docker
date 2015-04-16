@@ -14,8 +14,7 @@
     "hubot-pugme": "^0.1.0",
     "hubot-rules": "^0.1.0",
     "hubot-scripts": "^2.5.16",
-    "hubot-youtube": "^0.1.2",
-    "hubot-hipchat": "~2.5.1-5"
+    "hubot-youtube": "^0.1.2"
   },
   "engines": {
     "node": "0.10.x"
