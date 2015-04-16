@@ -17,10 +17,12 @@ WORKDIR /home/hubot
 USER hubot
 
 COPY package.json /home/hubot/package.json
+COPY external-scripts.json /home/hubot/external-scripts.json
 
 RUN yo hubot \
 		--owner="Curb Sysadmin <sysadmin@gocurb.com>" \
 		--name="Curbot" \
 		--description="Curbot Environment Manager" \
 		--adapter="hipchat"
+RUN echo n
 RUN echo n
