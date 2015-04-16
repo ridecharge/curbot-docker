@@ -6,11 +6,10 @@ RUN apt-get update && \
 							python
 
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
-RUN apt-get install -y nodejs 
+RUN apt-get install -y nodejs
 RUN curl -sL https://www.npmjs.com/install.sh | sh
 
-RUN groupadd --gid 2000 hubot
-RUN adduser --uid 2000 --gid 2000 hubot
+RUN adduser --uid 2000 hubot
 RUN npm install -g yo generator-hubot
 ENV HOME /home/hubot
 WORKDIR /home/hubot
