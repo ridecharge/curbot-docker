@@ -1,15 +1,26 @@
 FROM ubuntu:14.04.2
-
 RUN apt-get update && \
-	apt-get -y upgrade
+		apt-get -y upgrade && \
+		apt-get install -y curl \
+							build-essential \
+							python
 
-ADD http://nodejs.org/dist/v0.12.2/node-v0.12.2-linux-x64.tar.gz /tmp/node-v0.12.2-linux-x64.tar.gz
-WORKDIR /tmp
-RUN tar -xvf node-v0.12.2-linux-x64.tar.gz
-RUN mv node-v0.12.2-linux-x64/ /opt/node/
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+RUN apt-get install -y nodejs 
+RUN curl -sL https://www.npmjs.com/install.sh | sh
 
-WORKDIR /opt/node/bin
-RUN ls -lrt
-RUN chmod +x node
-RUN chmod +x npm
-RUN npm install --allow-root -g yo generator-hubot
+RUN groupadd --gid 2000 hubot
+RUN adduser --uid 2000 --gid 2000 hubot
+RUN npm install -g yo generator-hubot
+ENV HOME /home/hubot
+WORKDIR /home/hubot
+USER hubot
+
+COPY package.json /home/hubot/package.json
+
+RUN yo hubot \
+		--owner="Curb Sysadmin <sysadmin@gocurb.com>" \
+		--name="Curbot" \
+		--description="Curbot Environment Manager" \
+		--adapter="hipchat"
+RUN echo n
