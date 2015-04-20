@@ -27,6 +27,8 @@ COPY hubot-scripts.json /opt/hubot/hubot-scripts.json
 COPY scripts /opt/hubot/scripts
 COPY hubot-wrapper.sh /tmp/hubot-wrapper.sh
 
+RUN chmod 0500 /tmp/hubot-wrapper.sh
+
 RUN yo hubot \
 		--owner="Curb Sysadmin <sysadmin@gocurb.com>" \
 		--name="Curbot" \
