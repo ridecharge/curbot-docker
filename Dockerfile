@@ -35,4 +35,4 @@ RUN yo hubot \
 RUN echo n
 RUN npm install
 
-ENTRYPOINT ["bin/hubot"]
+ENTRYPOINT ["/tmp/hubot-wrapper.sh"]
