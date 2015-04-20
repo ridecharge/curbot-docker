@@ -25,6 +25,7 @@ COPY package.json /opt/hubot/package.json
 COPY external-scripts.json /opt/hubot/external-scripts.json
 COPY hubot-scripts.json /opt/hubot/hubot-scripts.json
 COPY scripts /opt/hubot/scripts
+COPY hubot-wrapper.sh /tmp/hubot-wrapper.sh
 
 RUN yo hubot \
 		--owner="Curb Sysadmin <sysadmin@gocurb.com>" \
