@@ -38,5 +38,5 @@ RUN yo hubot \
 
 RUN echo n
 RUN npm install
-
+EXPOSE 8080
 ENTRYPOINT ["/tmp/hubot-wrapper.sh"]

@@ -1,5 +1,5 @@
 DOCKER_REPO=registry.gocurb.internal:80
-CONTAINER=$(DOCKER_REPO)/hubot
+CONTAINER=$(DOCKER_REPO)/curbot
 
 all: build push
 
