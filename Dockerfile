@@ -17,6 +17,10 @@ RUN chown hubot:hubot /var/hubot
 RUN chmod 0600 /var/hubot
 RUN chmod 0700 /opt/hubot
 
+COPY hubot-wrapper.sh /tmp/hubot-wrapper.sh
+RUN chown hubot:hubot /tmp/hubot-wrapper.sh
+RUN chmod 0500 /tmp/hubot-wrapper.sh
+
 RUN npm install -g yo generator-hubot
 WORKDIR /opt/hubot
 USER hubot
@@ -25,9 +29,6 @@ COPY package.json /opt/hubot/package.json
 COPY external-scripts.json /opt/hubot/external-scripts.json
 COPY hubot-scripts.json /opt/hubot/hubot-scripts.json
 COPY scripts /opt/hubot/scripts
-COPY hubot-wrapper.sh /tmp/hubot-wrapper.sh
-
-RUN chmod 0500 /tmp/hubot-wrapper.sh
 
 RUN yo hubot \
 		--owner="Curb Sysadmin <sysadmin@gocurb.com>" \
