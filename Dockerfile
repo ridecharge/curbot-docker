@@ -17,7 +17,7 @@ RUN chmod 0600 /var/hubot
 RUN mkdir -p /opt/hubot
 COPY *.json /opt/hubot/
 COPY scripts /opt/hubot/scripts
-RUN chown hubot:hubot /opt/hubot
+RUN chown -R hubot:hubot /opt/hubot
 RUN chmod -R 0700 /opt/hubot
 
 COPY hubot-wrapper.sh /tmp/hubot-wrapper.sh
