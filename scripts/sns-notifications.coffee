@@ -1,7 +1,7 @@
 module.exports = (robot) ->
-  # Handle all notifications
+  room = process.env.HUBOT_NOTIFICATION_ROOM
   robot.on "sns:notification", (msg) ->
-    robot.messageRoom("46691_curbot_stage_notifications@conf.hipchat.com",
+    robot.messageRoom(room,
       """
       Received notification:
         Topic:      #{msg.topic}
