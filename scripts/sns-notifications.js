@@ -15,16 +15,12 @@ module.exports = function(robot) {
         message = parser.parse(msg.message);
         console.log(message.ResourceProperties)
         console.log(message)
-        params = JSON.parse(
-            message.ResourceProperties.substring(
-                1, message.ResourceProperties.length - 1));
 
         if (message.StackName === message.LogicalResourceId) {
             robot.messageRoom(room,
                 "Topic: " + msg.topic +
                 "\nStack: " + message.StackName +
-                "\nStatus: " + message.ResourceStatus +
-                "\nVersion: " + params.Version);
+                "\nStatus: " + message.ResourceStatus);
         }
     });
 }
