@@ -26,6 +26,8 @@ RUN chown hubot:hubot /tmp/hubot-wrapper.sh
 RUN chmod 0500 /tmp/hubot-wrapper.sh
 
 RUN npm install -g yo generator-hubot
+USER hubot
+WORKDIR /opt/hubot
 RUN yo hubot \
 		--owner="Curb Sysadmin <sysadmin@gocurb.com>" \
 		--name="Curbot" \
@@ -35,6 +37,5 @@ RUN yo hubot \
 RUN echo n
 RUN npm install
 
-USER hubot
 EXPOSE 8080
 ENTRYPOINT ["/tmp/hubot-wrapper.sh"]
