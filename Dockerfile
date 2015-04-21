@@ -24,6 +24,7 @@ RUN chmod 0500 /tmp/hubot-wrapper.sh
 RUN npm install -g yo generator-hubot
 WORKDIR /opt/hubot
 
+USER hubot
 COPY *.json /opt/hubot/
 COPY scripts /opt/hubot/scripts
 
@@ -36,6 +37,5 @@ RUN yo hubot \
 RUN echo n
 RUN npm install
 
-USER hubot
 EXPOSE 8080
 ENTRYPOINT ["/tmp/hubot-wrapper.sh"]
