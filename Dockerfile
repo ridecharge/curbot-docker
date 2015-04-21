@@ -10,23 +10,23 @@ RUN apt-get install -y nodejs
 RUN curl -sL https://www.npmjs.com/install.sh | sh
 
 RUN adduser --uid 2000 hubot
-RUN mkdir -p /opt/hubot
 RUN mkdir -p /var/hubot
-RUN chown hubot:hubot /opt/hubot
 RUN chown hubot:hubot /var/hubot
 RUN chmod 0600 /var/hubot
-RUN chmod 0700 /opt/hubot
+
+RUN mkdir -p /opt/hubot
+COPY *.json /opt/hubot/
+COPY scripts /opt/hubot/scripts
+RUN chown hubot:hubot /opt/hubot
+RUN chmod -R 0700 /opt/hubot
 
 COPY hubot-wrapper.sh /tmp/hubot-wrapper.sh
 RUN chown hubot:hubot /tmp/hubot-wrapper.sh
 RUN chmod 0500 /tmp/hubot-wrapper.sh
 
 RUN npm install -g yo generator-hubot
-WORKDIR /opt/hubot
 
 USER hubot
-COPY *.json /opt/hubot/
-COPY scripts /opt/hubot/scripts
 
 RUN yo hubot \
 		--owner="Curb Sysadmin <sysadmin@gocurb.com>" \
