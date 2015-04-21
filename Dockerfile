@@ -17,6 +17,7 @@ RUN chmod 0600 /var/hubot
 RUN mkdir -p /opt/hubot
 COPY *.json /opt/hubot/
 COPY scripts /opt/hubot/scripts
+
 RUN chown -R hubot:hubot /opt/hubot
 RUN chmod -R 0700 /opt/hubot
 
@@ -25,9 +26,6 @@ RUN chown hubot:hubot /tmp/hubot-wrapper.sh
 RUN chmod 0500 /tmp/hubot-wrapper.sh
 
 RUN npm install -g yo generator-hubot
-
-USER hubot
-
 RUN yo hubot \
 		--owner="Curb Sysadmin <sysadmin@gocurb.com>" \
 		--name="Curbot" \
@@ -37,5 +35,6 @@ RUN yo hubot \
 RUN echo n
 RUN npm install
 
+USER hubot
 EXPOSE 8080
 ENTRYPOINT ["/tmp/hubot-wrapper.sh"]
