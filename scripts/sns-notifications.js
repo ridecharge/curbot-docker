@@ -10,14 +10,14 @@ module.exports = function(robot) {
 
     parser = require("properties-parser")
     robot.on("sns:notification:curbformation-stage-notifications", function(msg) {
-        message = parser.parse(msg.message)
-        params = JSON.parse(message.ResourceProperties)
+        message = parser.parse(msg.message);
+        params = JSON.parse(message.ResourceProperties);
         if(message.StackName === message.LogicalResourceId) {
           robot.messageRoom(room,
               "Topic: " + msg.topic +
               "\nStack: " + message.StackName +
               "\nStatus: " + message.ResourceStatus +
-              "\nVersion: " + params.Version)
+              "\nVersion: " + params.Version);
         }
     });
 }
