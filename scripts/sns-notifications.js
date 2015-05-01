@@ -18,7 +18,7 @@ module.exports = function(robot) {
             robot.messageRoom(room,
                 "Topic: " + msg.topic +
                 "\nStack: " + message.StackName +
-                "\nStatus: " + message.ResourceStatusß);
+                "\nStatus: " + message.ResourceStatus);
         }
     });
 }
